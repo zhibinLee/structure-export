@@ -34,7 +34,8 @@ public class StructureExportApplicationTests {
 
 	@Test
 	public void contextLoads() throws IOException {
-		String schemaName = "bim-dev";
+		String schemaName = "bim-dev"; 
+		
 		String[] titles = {"列名", "数据类型", "默认值", "长度", "允许空值", "索引类型", "备注"};
     	String[] columns = {"COLUMN_NAME", "COLUMN_TYPE", "COLUMN_DEFAULT", "CHARACTER_MAXIMUM_LENGTH", "IS_NULLABLE", "COLUMN_KEY", "COLUMN_COMMENT"};
 		List<Map<String, Object>> dataList = new ArrayList<>();
