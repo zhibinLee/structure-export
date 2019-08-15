@@ -40,7 +40,7 @@ public class StructureExportApplicationTests {
     	String[] columns = {"COLUMN_NAME", "COLUMN_TYPE", "COLUMN_DEFAULT", "CHARACTER_MAXIMUM_LENGTH", "IS_NULLABLE", "COLUMN_KEY", "COLUMN_COMMENT"};
 		List<Map<String, Object>> dataList = new ArrayList<>();
 		List<Map<String, Object>> tablessList = structureService.queryTablesBySchemaName(schemaName);
-		for (Map<String, Object> map : tablessList) {
+		for (Map<String, Object> map : tablessList) { 
 			if (skipSet.contains(map.get(ExportExcel.TABLE_NAME).toString())) {
 				continue;
 			}
