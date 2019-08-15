@@ -43,7 +43,6 @@ public class StructureExportApplicationTests {
 			if (skipSet.contains(map.get(ExportExcel.TABLE_NAME).toString())) {
 				continue;
 			}
-
 			//System.out.println(ExportExcel.outputFormat(map.get(ExportExcel.TABLE_NAME).toString(),map.get(ExportExcel.TABLE_COMMENT).toString()));
 			List<Map<String, String>> list = structureService.queryStructureByTableName(schemaName,map.get(ExportExcel.TABLE_NAME).toString());
 			map.put(ExportExcel.COLUMN_LIST, list);
