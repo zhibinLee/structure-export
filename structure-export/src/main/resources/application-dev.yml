@@ -1,13 +1,8 @@
 spring:
   datasource:
-    url: XXXXX
+    url: XXXX
     username: XXXX
-    password: XXXXX
+    password: XXXX
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   #type-aliases-package: cn.com.lrh.export.structure.entity
- 
-#showSql
-logging:
-  level:
-     cn.com.lrh.export.structure.mapper : debug

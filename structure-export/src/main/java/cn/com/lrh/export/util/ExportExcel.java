@@ -186,7 +186,7 @@ public class ExportExcel {
 		String info = new StringBuffer(computation(total)).append("\n")
 		.append(computation(total,tableName+"("+table_comment+")")).append("\n")
 		.append(computation(total)).toString();
-		System.out.println(info);
+		//System.out.println(info);
 		info = tableName+"("+table_comment+")";
 		return info;
 	}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <!--引入默认的一些设置-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    
+    <logger name="org.springframework.web" level="info"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="cn.com.lrh.export.structure.mapper" level="DEBUG"/>
+    
+    <!-- 文件输出格式 -->
+    <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%level] [%class:%line] - %m %n"/>
+    <!-- dev文件路径 -->
+    <property name="DEV_FILE_PATH" value="/data/space/bim-dev/web_api/logs/"/>
+    <!-- test文件路径 -->
+    <property name="TEST_FILE_PATH" value="/data/space/bim-test/web_api/logs/"/>
+    <!-- pre-prod文件路径 -->
+    <property name="PRE_PROD_FILE_PATH" value="/data/bim/web_api/logs/pre_prod/"/>
+    <!-- pro文件路径 -->
+    <property name="PRO_FILE_PATH" value="/data/bim/web_api/logs/prod/"/>
+    
+    
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}) - %cyan(%msg%n)</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] [%class:%line] - %m %n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- 本地环境 -->
+    <springProfile name="local">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+    
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <appender name="DEV-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${DEV_FILE_PATH}/logback_%d{yyyy-MM-dd}.log</fileNamePattern>
+                <MaxHistory>30</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${PATTERN}</pattern>
+            </layout>
+        </appender>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="DEV-FILE"/>
+        </root>
+    </springProfile>
+
+
+</configuration>

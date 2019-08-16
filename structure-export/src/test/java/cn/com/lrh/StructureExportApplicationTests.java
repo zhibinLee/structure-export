@@ -17,12 +17,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.com.lrh.export.structure.service.TableStructureService;
 import cn.com.lrh.export.util.ExportExcel;
+import lombok.extern.log4j.Log4j2;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @MapperScan("cn.com.lrh.export.structure.mapper")
+@Log4j2
 public class StructureExportApplicationTests {
-
+	//private Logger log = LoggerFactory.getLogger(StructureExportApplicationTests.class);
 	private static Set<String> skipSet = new HashSet<>();;
 	{
 		skipSet.add("DATABASECHANGELOG");
@@ -44,7 +46,7 @@ public class StructureExportApplicationTests {
 			if (skipSet.contains(map.get(ExportExcel.TABLE_NAME).toString())) {
 				continue;
 			}
-			//System.out.println(ExportExcel.outputFormat(map.get(ExportExcel.TABLE_NAME).toString(),map.get(ExportExcel.TABLE_COMMENT).toString()));
+			log.info(ExportExcel.outputFormat(map.get(ExportExcel.TABLE_NAME).toString(),map.get(ExportExcel.TABLE_COMMENT).toString()));
 			List<Map<String, String>> list = structureService.queryStructureByTableName(schemaName,map.get(ExportExcel.TABLE_NAME).toString());
 			map.put(ExportExcel.COLUMN_LIST, list);
 			dataList.add(map);
